@@ -3,200 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Task & Unlock Reward</title>
-
+  <title>Task & Reward System</title>
   <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to right, #0f172a, #1e293b);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 15px;
-    }
-
-    .card {
-      max-width: 520px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(15px);
-      border-radius: 18px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(0,0,0,0.4);
-    }
-
-    h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 15px;
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-
-    .steps {
-      text-align: left;
-      margin: 20px 0;
-      padding: 15px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .steps li {
-      margin: 10px 0;
-      font-size: 14px;
-    }
-
-    .btn {
-      margin-top: 18px;
-      padding: 14px 25px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      background: #00adb5;
-      color: white;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #00cfcf;
-    }
-
-    .btn:disabled {
-      background: gray;
-      cursor: not-allowed;
-    }
-
-    #timer {
-      margin-top: 18px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #00ff99;
-    }
-
-    #warning {
-      margin-top: 10px;
-      color: #ff4d4d;
-      font-weight: bold;
-      display: none;
-    }
-
-    #payoutBox {
-      display: none;
-      margin-top: 25px;
-      padding: 18px;
-      border-radius: 12px;
-      background: rgba(0, 255, 128, 0.12);
-    }
-
-    #payoutBox h2 {
-      margin: 0;
-      color: #00ff99;
-    }
-
-    footer {
-      margin-top: 20px;
-      font-size: 12px;
-      opacity: 0.6;
-    }
+    body{margin:0;font-family:Arial,sans-serif;background:#0f172a;color:#fff;text-align:center;padding:20px;}
+    .card{max-width:900px;margin:auto;background:rgba(255,255,255,.06);padding:25px;border-radius:15px;
+      box-shadow:0 0 20px rgba(0,0,0,.4);}
+    .btn{padding:14px 25px;font-size:16px;border:none;border-radius:10px;cursor:pointer;
+      background:#00adb5;color:#fff;font-weight:bold;margin-top:15px;}
+    .btn:disabled{background:gray;cursor:not-allowed;}
+    #timer{margin-top:15px;font-size:20px;font-weight:bold;color:#00ff99;}
+    #warning{margin-top:10px;color:red;font-weight:bold;display:none;}
+    #websiteBox{display:none;margin-top:25px;}
+    iframe{width:100%;height:450px;border:2px solid #00adb5;border-radius:12px;}
+    #upiBox{display:none;margin-top:25px;padding:20px;border-radius:12px;background:rgba(0,255,128,.15);}
+    input{padding:12px;width:80%;border-radius:8px;border:none;font-size:15px;margin-top:10px;}
+    #errorMsg{color:red;font-weight:bold;display:none;margin-top:15px;}
+    #retryBtn{display:none;background:#ff9800;}
+    .steps{ text-align:left;margin:20px auto;padding:15px;border-radius:12px;
+      background:rgba(255,255,255,0.08);max-width:700px;}
+    .steps h3{margin:0;color:#00ff99;}
+    .steps ul{line-height:1.8;font-size:15px;margin-top:10px;}
   </style>
 </head>
-
 <body>
+<div class="card">
+  <h1>✅ Complete Task & Unlock Reward</h1>
+  <p>Stay active for 5 minutes while using Cryptorbite website.</p>
 
-  <div class="card">
-
-    <h1>✅ Complete Task & Unlock Reward</h1>
-    <p>
-      Follow the steps below carefully to unlock your payout option.
-      Stay active for 5 minutes without switching tabs.
-    </p>
-
-    <ul class="steps">
-      <li>1️⃣ Click "Start Task" button</li>
-      <li>2️⃣ Google website will open in new tab</li>
-      <li>3️⃣ Stay on this page for 5 minutes</li>
-      <li>4️⃣ Do not switch tab, timer will pause</li>
-      <li>5️⃣ Reward unlocks after completion ✅</li>
+  <div class="steps">
+    <h3>📌 Task Steps:</h3>
+    <ul>
+      <li>✅ Step 1: Click <b>Start Task</b> button</li>
+      <li>✅ Step 2: Use Cryptorbite website inside this page</li>
+      <li>✅ Step 3: Stay active for <b>5 minutes</b></li>
+      <li>⚠️ Step 4: Tab switch will pause timer</li>
+      <li>🎉 Step 5: After completion, payout form unlocks</li>
     </ul>
-
-    <button class="btn" onclick="startTask()" id="startBtn">
-      🚀 Start Task Now
-    </button>
-
-    <div id="timer"></div>
-    <div id="warning">⚠️ Tab switched! Timer paused.</div>
-
-    <div id="payoutBox">
-      <h2>🎉 Congratulations!</h2>
-      <p>Your payout option is now unlocked ✅</p>
-      <button class="btn">Withdraw Reward</button>
-    </div>
-
-    <footer>
-      Secure Reward System • Powered by Your Website
-    </footer>
-
   </div>
 
+  <button class="btn" onclick="startTask()" id="startBtn">🚀 Start Task Now</button>
+  <div id="timer"></div>
+  <div id="warning">⚠️ Tab switched! Timer paused.</div>
+
+  <div id="websiteBox">
+    <h3>🌐 Use Website Below (5 Minutes Required)</h3>
+    <iframe src="https://cryptorbite.com"></iframe>
+  </div>
+
+  <div id="upiBox">
+    <h2>🎉 Task Completed!</h2>
+    <p>Enter your UPI ID to request payout:</p>
+    <input type="text" id="upiId" placeholder="Enter UPI ID (example: krunal@paytm)">
+    <br><br>
+    <button class="btn" onclick="submitUPI()">Submit Payout Request ✅</button>
+
+    <p id="errorMsg">❌ Network Problem! Please try again later.</p>
+    <button class="btn" id="retryBtn" onclick="retryRequest()">🔄 Retry Again</button>
+  </div>
+</div>
+
 <script>
-  let timeLeft = 300;
-  let timerRunning = false;
-  let timer;
+let timeLeft=300,timerRunning=false,timer;
 
-  function startTask() {
+function startTask(){
+  document.getElementById("startBtn").disabled=true;
+  document.getElementById("websiteBox").style.display="block";
+  timerRunning=true;
 
-    window.open("https://google.com", "_blank");
-
-    document.getElementById("startBtn").disabled = true;
-    timerRunning = true;
-
-    timer = setInterval(() => {
-
-      if (timerRunning) {
-
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-
-        document.getElementById("timer").innerHTML =
-          "⏳ Time Remaining: " + minutes + "m " + seconds + "s";
-
-        timeLeft--;
-
-        if (timeLeft < 0) {
-          clearInterval(timer);
-
-          document.getElementById("timer").innerHTML =
-            "✅ Task Completed Successfully!";
-
-          document.getElementById("payoutBox").style.display = "block";
-        }
-
+  timer=setInterval(()=>{
+    if(timerRunning){
+      let m=Math.floor(timeLeft/60);
+      let s=timeLeft%60;
+      document.getElementById("timer").innerHTML="⏳ Time Remaining: "+m+"m "+s+"s";
+      timeLeft--;
+      if(timeLeft<0){
+        clearInterval(timer);
+        document.getElementById("timer").innerHTML="✅ Task Completed Successfully!";
+        document.getElementById("upiBox").style.display="block";
       }
-
-    }, 1000);
-  }
-
-  document.addEventListener("visibilitychange", function () {
-
-    if (document.hidden) {
-      timerRunning = false;
-      document.getElementById("warning").style.display = "block";
-    } else {
-      timerRunning = true;
-      document.getElementById("warning").style.display = "none";
     }
+  },1000);
+}
 
-  });
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden){
+    timerRunning=false;
+    document.getElementById("warning").style.display="block";
+  }else{
+    timerRunning=true;
+    document.getElementById("warning").style.display="none";
+  }
+});
+
+function submitUPI(){
+  let upi=document.getElementById("upiId").value;
+  if(upi===""){alert("⚠️ Please enter your UPI ID first!");return;}
+
+  document.getElementById("errorMsg").style.display="block";
+  document.getElementById("retryBtn").style.display="none";
+
+  setTimeout(()=>{
+    document.getElementById("retryBtn").style.display="inline-block";
+  },10000);
+}
+
+function retryRequest(){
+  document.getElementById("upiId").value="";
+  document.getElementById("errorMsg").style.display="block";
+  document.getElementById("retryBtn").style.display="none";
+
+  setTimeout(()=>{
+    document.getElementById("retryBtn").style.display="inline-block";
+  },10000);
+}
 </script>
-
 </body>
 </html>
