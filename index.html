@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stay Active - Payout Unlock</title>
+  <style>
+    body {font-family: Arial, sans-serif; background:#f2f2f2; text-align:center; padding:30px;}
+    .box {max-width:520px; margin:auto; background:white; padding:25px; border-radius:15px;
+      box-shadow:0 0 15px rgba(0,0,0,0.15);}
+    .btn {padding:12px 22px; font-size:16px; background:#007bff; border:none; border-radius:8px;
+      color:white; cursor:pointer; margin-top:15px;}
+    .btn:disabled {background:gray; cursor:not-allowed;}
+    #timer {font-size:22px; margin-top:20px; font-weight:bold; color:green;}
+    #warning {margin-top:15px; font-weight:bold; color:red; display:none;}
+    #payoutBox {display:none; margin-top:25px; background:#eaffea; padding:18px; border-radius:10px;}
+  </style>
+</head>
+<body>
+<div class="box">
+  <h2>✅ Task: Stay Active for 5 Minutes</h2>
+  <p>1️⃣ Click button to open Google</p>
+  <p>2️⃣ Stay on this page for full 5 minutes</p>
+  <p>3️⃣ Tab switch/minimize = Timer Pause</p>
+
+  <button class="btn" onclick="startTask()" id="startBtn">
+    Open Google & Start Timer
+  </button>
+
+  <div id="timer"></div>
+  <div id="warning">⚠️ Tab switched! Timer Paused.</div>
+
+  <div id="payoutBox">
+    <h3>🎉 Completed!</h3>
+    <p>Payout Option Unlocked ✅</p>
+    <button class="btn">Withdraw Now</button>
+  </div>
+</div>
+
+<script>
+  let timeLeft = 300;
+  let timerRunning = false;
+  let timer;
+
+  function startTask() {
+    window.open("https://google.com", "_blank");
+    document.getElementById("startBtn").disabled = true;
+    timerRunning = true;
+
+    timer = setInterval(() => {
+      if (timerRunning) {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        document.getElementById("timer").innerHTML =
+          "⏳ Time Remaining: " + minutes + "m " + seconds + "s";
+
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(timer);
+          document.getElementById("timer").innerHTML =
+            "✅ Task Completed Successfully!";
+          document.getElementById("payoutBox").style.display = "block";
+        }
+      }
+    }, 1000);
+  }
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      timerRunning = false;
+      document.getElementById("warning").style.display = "block";
+    } else {
+      timerRunning = true;
+      document.getElementById("warning").style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>
