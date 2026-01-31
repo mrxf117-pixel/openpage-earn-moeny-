@@ -3,155 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reward Task System - V5</title>
-
+<title>Reward Task System - Step Page</title>
 <style>
-  body{margin:0;font-family:Arial,sans-serif;background:#0f172a;color:#fff;text-align:center;padding:20px;}
-  .card{max-width:900px;margin:auto;background:rgba(255,255,255,.06);
-    padding:25px;border-radius:15px;box-shadow:0 0 20px rgba(0,0,0,.4);}
-  .btn{padding:12px 22px;font-size:15px;border:none;border-radius:10px;
-    cursor:pointer;background:#00adb5;color:#fff;font-weight:bold;margin:8px;}
-  .btn:disabled{background:gray;}
-  #timer{margin-top:15px;font-size:20px;font-weight:bold;color:#00ff99;}
-  .progress-container{width:90%;margin:15px auto;background:rgba(255,255,255,0.2);
-    border-radius:12px;overflow:hidden;height:18px;}
-  .progress-bar{height:18px;width:0%;background:#00ff99;}
-  .spinner{width:50px;height:50px;border:6px solid rgba(255,255,255,0.2);
-    border-top:6px solid #00ff99;border-radius:50%;animation:spin 1s linear infinite;margin:auto;}
-  @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
-  .box{margin-top:20px;padding:15px;border-radius:12px;
-    background:rgba(255,255,255,0.08);text-align:left;}
-  h2{color:#00ff99;}
+ body{margin:0;font-family:Arial;background:#0f172a;color:#fff;text-align:center;padding:25px;}
+ .card{max-width:850px;margin:auto;background:rgba(255,255,255,.06);
+  padding:25px;border-radius:15px;box-shadow:0 0 20px rgba(0,0,0,.4);}
+ .btn{padding:14px 25px;font-size:16px;border:none;border-radius:10px;
+  cursor:pointer;background:#00adb5;color:#fff;font-weight:bold;margin-top:20px;}
+ .box{text-align:left;margin-top:20px;padding:15px;border-radius:12px;background:rgba(255,255,255,0.08);}
+ h2{color:#00ff99;}
 </style>
 </head>
-
 <body>
 <div class="card">
-
 <h1>✅ Complete the Task & Earn Rewards</h1>
-<p>Please follow the instructions carefully to unlock your payout.</p>
+<p>Please follow the instructions carefully before starting.</p>
 
-<!-- Wallet Balance -->
 <div class="box">
-  <h2>💰 Wallet Balance</h2>
-  <p>Current Balance: <b>$0</b></p>
+<h2>📌 Task Instructions</h2>
+<ol style="line-height:1.8;font-size:15px;">
+<li>Click the <b>Go to Next Page</b> button below.</li>
+<li>On the next page, press <b>Start Task Now</b> to begin.</li>
+<li>A new tab will open. Please <b>Sign Up</b> on the website.</li>
+<li>Use the website for at least <b>6 minutes</b>.</li>
+<li>Each completed task rewards you with <b>$1</b>.</li>
+<li>After completion, the payout form will unlock automatically.</li>
+</ol>
 </div>
 
-<!-- Professional Steps -->
-<div class="box">
-  <h2>📌 Task Instructions</h2>
-  <ol style="line-height:1.8;font-size:15px;">
-    <li>Click the <b>Start Task</b> button below.</li>
-    <li>A new tab will open. Please <b>Sign Up</b> on the website.</li>
-    <li>Use the website for at least <b>6 minutes</b> without closing the tab.</li>
-    <li>After 6 minutes, the payout page will automatically appear.</li>
-    <li>Each completed task rewards you with <b>$1</b>.</li>
-    <li>Once completed, the payout form will be unlocked for withdrawal.</li>
-  </ol>
-</div>
-
-<button class="btn" onclick="startTask()" id="startBtn">🚀 Start Task Now</button>
-
-<!-- Loader -->
-<div id="loader" style="display:none;margin-top:15px;">
-  <div class="spinner"></div>
-  <p>Opening Website...</p>
-</div>
-
-<!-- Progress Bar -->
-<div class="progress-container">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
-
-<div id="timer"></div>
-
-<!-- UPI Form -->
-<div id="upiBox" style="display:none;" class="box">
-  <h2>🎉 Task Completed!</h2>
-  <p>Enter your UPI ID to request payout:</p>
-
-  <input type="text" id="upiId" placeholder="example: krunal@paytm"
-    style="padding:10px;width:80%;border-radius:8px;border:none;">
-
-  <br><br>
-
-  <button class="btn" onclick="submitUPI()">Submit Withdrawal Request ✅</button>
-
-  <p id="errorMsg" style="display:none;color:red;font-weight:bold;">
-    ❌ Network Problem! Please try again later.
-  </p>
-
-  <button class="btn" id="retryBtn" onclick="retryRequest()"
-    style="display:none;background:#ff9800;">
-    🔄 Retry Again
-  </button>
-</div>
+<a href="task.html"><button class="btn">➡️ Go to Next Page</button></a>
 
 </div>
-
-<script>
-let totalTime=360; // 6 minutes
-let timeLeft=360;
-let timer;
-let running=false;
-
-function startTask(){
-  document.getElementById("startBtn").disabled=true;
-  document.getElementById("loader").style.display="block";
-
-  // Open in new tab
-  window.open("https://t.datsk11.com/399131/5380?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN", "_blank");
-
-  setTimeout(()=>{
-    document.getElementById("loader").style.display="none";
-    running=true;
-
-    timer=setInterval(()=>{
-      if(running){
-        let m=Math.floor(timeLeft/60);
-        let s=timeLeft%60;
-        document.getElementById("timer").innerHTML=
-          "⏳ Time Remaining: "+m+"m "+s+"s";
-
-        let progress=((totalTime-timeLeft)/totalTime)*100;
-        document.getElementById("progressBar").style.width=progress+"%";
-
-        timeLeft--;
-
-        if(timeLeft<0){
-          clearInterval(timer);
-          document.getElementById("timer").innerHTML="✅ Task Completed!";
-          document.getElementById("progressBar").style.width="100%";
-          document.getElementById("upiBox").style.display="block";
-        }
-      }
-    },1000);
-
-  },2000);
-}
-
-function submitUPI(){
-  let upi=document.getElementById("upiId").value;
-  if(upi===""){alert("Please enter your UPI ID first.");return;}
-
-  document.getElementById("errorMsg").style.display="block";
-  document.getElementById("retryBtn").style.display="none";
-
-  setTimeout(()=>{
-    document.getElementById("retryBtn").style.display="inline-block";
-  },10000);
-}
-
-function retryRequest(){
-  document.getElementById("upiId").value="";
-  document.getElementById("retryBtn").style.display="none";
-  document.getElementById("errorMsg").style.display="block";
-
-  setTimeout(()=>{
-    document.getElementById("retryBtn").style.display="inline-block";
-  },10000);
-}
-</script>
-
 </body>
 </html>
