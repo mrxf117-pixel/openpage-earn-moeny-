@@ -29,6 +29,9 @@
 <p>Click the button below to open the website and start the 6-minute timer.</p>
 
 <button class="btn" onclick="startTask()" id="startBtn">Start Task Now ✅</button>
+ <button class="btn" onclick="openSecondTask()" style="background:#22c55e;">
+Start Alternate Task 🔗
+</button>
 
 <div id="loader" style="display:none;margin-top:15px;">
   <div class="spinner"></div>
@@ -58,7 +61,9 @@
 
 <script>
 let totalTime=360,timeLeft=360,timer;
-
+function openSecondTask(){
+  window.open("https://t.datsk11.com/399131/5421?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN","_blank");
+}
 function startTask(){
   document.getElementById("startBtn").disabled=true;
   document.getElementById("loader").style.display="block";
