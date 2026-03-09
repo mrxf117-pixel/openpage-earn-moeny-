@@ -29,8 +29,8 @@
 <p>Click the button below to open the website and start the 6-minute timer.</p>
 
 <button class="btn" onclick="startTask()" id="startBtn">Start Task Now ✅</button>
- <button class="btn" onclick="openSecondTask()" style="background:#22c55e;">
-Start Alternate Task 🔗
+ <button class="btn" onclick="startRandomTask()" id="startBtn">
+Start Task Now ✅
 </button>
 
 <div id="loader" style="display:none;margin-top:15px;">
@@ -63,6 +63,32 @@ Start Alternate Task 🔗
 let totalTime=360,timeLeft=360,timer;
 function openSecondTask(){
   window.open("https://t.datsk11.com/399131/5421?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN","_blank");
+}
+ function startRandomTask(){
+
+  document.getElementById("startBtn").disabled = true;
+
+  const urls = [
+  "https://t.datsk11.com/399131/5380?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN",
+  "https://t.datsk11.com/399131/7964?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN",
+  "https://t.datsk11.com/399131/7020?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN",
+  "https://t.datsk11.com/399131/7897?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN",
+  "https://t.datsk11.com/399131/5421?bo=2753,2754,2755,2756&aff_sub5=SF_006OG000004lmDN"
+  ];
+
+  // random select
+  const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+
+  // open random URL
+  window.open(randomUrl, "_blank");
+
+  document.getElementById("loader").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+    startTimer(); 
+  },2000);
+
 }
 function startTask(){
   document.getElementById("startBtn").disabled=true;
